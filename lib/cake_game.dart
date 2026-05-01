@@ -2,28 +2,30 @@ import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-// Bu sınıf oyunun beynidir.
 class CakeGame extends FlameGame {
   @override
   Future<void> onLoad() async {
-    // Oyun başlarken yüklenecek görseller ve bileşenler buraya gelir.
-    print("Oyun yüklendi!");
+    // Ekrana geçici bir pembe zemin ekleyelim
+    add(
+      RectangleComponent(
+        position: Vector2(0, 0),
+        size: size, // Tüm ekranı kapla
+        paint: Paint()..color = const Color(0xFFFFD1DC), // Pastel Pembe
+      ),
+    );
 
-    // Ekranda bir şey görebilmek için basit bir yazı ekleyelim:
+    // Merkeze bir test yazısı ekleyelim
     add(
       TextComponent(
-        text: 'Cake Game Başladı!',
-        position: Vector2(100, 100),
+        text: 'C&C Bakery Yuklendi!',
+        position: size / 2,
+        anchor: Anchor.center,
         textRenderer: TextPaint(
           style: const TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
     );
-  }
 
-  @override
-  void update(double dt) {
-    super.update(dt);
-    // Zamanla değişen her şey (sürenin azalması gibi) burada hesaplanır.
+    print("Flame sistemi hatasız çalışıyor!");
   }
 }

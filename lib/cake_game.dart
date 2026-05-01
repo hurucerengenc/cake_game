@@ -1,31 +1,77 @@
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
 class CakeGame extends FlameGame {
   @override
   Future<void> onLoad() async {
-    // Ekrana geçici bir pembe zemin ekleyelim
+    await images.loadAll([
+      'arkaplan.png',
+      'pastatabagi.png',
+      'kakaolukek.png',
+      'keksade.png',
+      'cileklikek.png',
+      'un.png',
+      'yumurta.png',
+      'mikser.png',
+    ]);
+
+    // 🟣 ARKA PLAN
     add(
-      RectangleComponent(
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('arkaplan.png')),
+        size: size,
         position: Vector2(0, 0),
-        size: size, // Tüm ekranı kapla
-        paint: Paint()..color = const Color(0xFFFFD1DC), // Pastel Pembe
       ),
     );
 
-    // Merkeze bir test yazısı ekleyelim
+    // 🍽️ TABAK
     add(
-      TextComponent(
-        text: 'C&C Bakery Yuklendi!',
-        position: size / 2,
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('pastatabagi.png')),
+        size: Vector2(250, 150),
+        position: Vector2(size.x / 2, size.y * 0.65),
         anchor: Anchor.center,
-        textRenderer: TextPaint(
-          style: const TextStyle(color: Colors.white, fontSize: 24),
-        ),
       ),
     );
 
-    print("Flame sistemi hatasız çalışıyor!");
+    // 🍫 KEK (şimdilik kakaolu gösteriyoruz)
+    add(
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('kakaolukek.png')),
+        size: Vector2(220, 140),
+        position: Vector2(size.x / 2, size.y * 0.52),
+        anchor: Anchor.center,
+      ),
+    );
+
+    // 🍞 UN
+    add(
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('un.png')),
+        size: Vector2(80, 80),
+        position: Vector2(70, size.y - 80),
+        anchor: Anchor.center,
+      ),
+    );
+
+    // 🥚 YUMURTA
+    add(
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('yumurta.png')),
+        size: Vector2(80, 80),
+        position: Vector2(160, size.y - 80),
+        anchor: Anchor.center,
+      ),
+    );
+
+    // 🌀 MİKSER
+    add(
+      SpriteComponent(
+        sprite: Sprite(images.fromCache('mikser.png')),
+        size: Vector2(100, 100),
+        position: Vector2(270, size.y - 80),
+        anchor: Anchor.center,
+      ),
+    );
   }
 }

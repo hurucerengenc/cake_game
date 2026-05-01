@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flame: ^1.11.0 # En güncel sürümü kullanmak için terminalden 'flutter pub add flame' de yapabilirsiniz.
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

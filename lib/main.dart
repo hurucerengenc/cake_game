@@ -1,7 +1,33 @@
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'cake_game.dart'; // Dosya ismin cake_game.dart olduğu için böyle import etmelisin
+import 'package:flame/game.dart';
+import 'cake_game.dart';
 
 void main() {
-  runApp(GameWidget(game: CakeGame()));
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  static const double mobileWidth = 390;
+  static const double mobileHeight = 844;
+
+  @override
+  Widget build(BuildContext context) {
+    final game = CakeGame();
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: SizedBox(
+            width: mobileWidth,
+            height: mobileHeight,
+            child: GameWidget(game: game),
+          ),
+        ),
+      ),
+    );
+  }
 }

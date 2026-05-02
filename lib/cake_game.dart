@@ -2,76 +2,86 @@ import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 
 class CakeGame extends FlameGame {
+  late SpriteComponent background;
+
   @override
   Future<void> onLoad() async {
     await images.loadAll([
       'arkaplan.png',
       'pastatabagi.png',
       'kakaolukek.png',
-      'keksade.png',
-      'cileklikek.png',
       'un.png',
       'yumurta.png',
       'mikser.png',
     ]);
 
-    // 🟣 ARKA PLAN
-    add(
-      SpriteComponent(
-        sprite: Sprite(images.fromCache('arkaplan.png')),
-        size: size,
-        position: Vector2(0, 0),
-      ),
-    );
+    final centerX = size.x / 2;
 
-    // 🍽️ TABAK
+    // 🟣 ARKA PLAN
+    background = SpriteComponent(
+      sprite: Sprite(images.fromCache('arkaplan.png')),
+      size: size,
+      position: Vector2.zero(),
+    );
+    add(background);
+
+    // 🍽️ TABAK (ÖNCE EKLENİR → altta kalır)
     add(
       SpriteComponent(
         sprite: Sprite(images.fromCache('pastatabagi.png')),
-        size: Vector2(250, 150),
-        position: Vector2(size.x / 2, size.y * 0.65),
+        size: Vector2(320, 180),
+        position: Vector2(centerX, size.y * 0.62),
         anchor: Anchor.center,
       ),
     );
 
-    // 🍫 KEK (şimdilik kakaolu gösteriyoruz)
+    // 🍫 KEK (tabağın biraz üstünde)
     add(
       SpriteComponent(
         sprite: Sprite(images.fromCache('kakaolukek.png')),
-        size: Vector2(220, 140),
-        position: Vector2(size.x / 2, size.y * 0.52),
+        size: Vector2(300, 180),
+        position: Vector2(centerX, size.y * 0.52),
         anchor: Anchor.center,
       ),
     );
 
-    // 🍞 UN
+    // 🍞 UN (SOLDA - büyük)
     add(
       SpriteComponent(
         sprite: Sprite(images.fromCache('un.png')),
-        size: Vector2(80, 80),
-        position: Vector2(70, size.y - 80),
+        size: Vector2(150, 150),
+        position: Vector2(120, size.y * 0.52),
         anchor: Anchor.center,
       ),
     );
 
-    // 🥚 YUMURTA
+    // 🥚 YUMURTA (unun yanında - büyük)
     add(
       SpriteComponent(
         sprite: Sprite(images.fromCache('yumurta.png')),
-        size: Vector2(80, 80),
-        position: Vector2(160, size.y - 80),
+        size: Vector2(140, 140),
+        position: Vector2(260, size.y * 0.52),
         anchor: Anchor.center,
       ),
     );
 
-    // 🌀 MİKSER
+    // 🌀 MİKSER (SAĞDA - büyük)
     add(
       SpriteComponent(
         sprite: Sprite(images.fromCache('mikser.png')),
-        size: Vector2(100, 100),
-        position: Vector2(270, size.y - 80),
+        size: Vector2(200, 200),
+        position: Vector2(size.x - 150, size.y * 0.52),
         anchor: Anchor.center,
       ),
     );
+  }
+
+  @override
+  void onGameResize(Vector2 canvasSize) {
+    super.onGameResize(canvasSize);
+
+    if (isLoaded) {
+      background.size = canvasSize;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
-import 'cake_game.dart';
+import 'game/cake_game.dart';
 
 void main() {
   runApp(const MyApp());
